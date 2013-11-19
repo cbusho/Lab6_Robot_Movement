@@ -1,4 +1,5 @@
 #include <msp430.h> 
+#include "Robot_Movement.h"
 
 /*
  * main.c
@@ -8,15 +9,21 @@ int main(void) {
 
     initMotor();
 
-//    moveLeftMotorBackward();
-//
-//    __delay_cycles(1000000);
-//
-      moveLeftMotorForward();
+    moveRobotForward();
 
-    __delay_cycles(1000000);
+    __delay_cycles(5000000);
 
-    moveLeftMotorBackward();
+      moveRobotBackward();
+
+    __delay_cycles(5000000);
+
+    moveRobotSmallLeft();
+    __delay_cycles(5000000);
+    moveRobotBigLeft();
+    __delay_cycles(5000000);
+    moveRobotSmallRight();
+    __delay_cycles(5000000);
+    moveRobotBigRight();
 
 	while(1){
 //		__delay_cycles(1000000);
