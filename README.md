@@ -4,6 +4,7 @@ Example code is included in example.c
 
 ## General Notes
 Configures the robot using TimerA and PWM to move easily with the functions provided
+Used Pins 1.1, 1.2, 2.0 and 2.1 to control PWM
 
 ## Functions
 
