@@ -16,7 +16,7 @@ void initMotor()
 		P1DIR |= BIT2;                // TA0CCR1 on P1.2
 		P1SEL |= BIT2;                // TA0CCR1 on P1.2
 
-		TACTL &= ~MC1|MC0;            // stop timer A0
+		TACTL &= ~(MC1|MC0);            // stop timer A0
 
 		TACTL |= TACLR;                // clear timer A0
 
@@ -36,7 +36,7 @@ void initMotor()
 		P2DIR |= BIT1;                // TA0CCR1 on P2.1
 		P2SEL |= BIT1;                // TA0CCR1 on P2.1
 
-		TA1CTL &= ~MC1|MC0;            // stop timer A0
+		TA1CTL &= ~(MC1|MC0);            // stop timer A0
 
 		TA1CTL |= TACLR;                // clear timer A0
 
@@ -53,49 +53,61 @@ void initMotor()
 
 void moveLeftMotorForward()
 {
-	TACCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
+//	stopRobot();
+//	__delay_cycles(300000);
+
+	TACCTL1 &= ~(OUTMOD0);
 	TACCTL1 |= OUTMOD_4;
-	TACCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TACCTL0 &= ~(OUTMOD0);
 	TACCTL0 |= OUTMOD_5;
 }
 
 void moveLeftMotorBackward()
 {
-	TACCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
+//	stopRobot();
+//	__delay_cycles(300000);
+
+	TACCTL1 &= ~(OUTMOD0);
 	TACCTL1 |= OUTMOD_5;
-	TACCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TACCTL0 &=  ~(OUTMOD0);
 	TACCTL0 |= OUTMOD_4;
 }
 
 void stopLeftMotor()
 {
-	TACCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TACCTL0 &= ~(OUTMOD0);
 	TACCTL0 |= OUTMOD_5;
-	TACCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TACCTL1 &= ~(OUTMOD0);
 	TACCTL1 |= OUTMOD_5;
 }
 
 void moveRightMotorForward()
 {
-	TA1CCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
-	TA1CCTL1 |= OUTMOD_5;
-	TA1CCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
-	TA1CCTL0 |= OUTMOD_4;
+//	stopRobot();
+//    __delay_cycles(300000);
+
+	TA1CCTL1 &= ~(OUTMOD0);
+	TA1CCTL1 |= OUTMOD_4;
+	TA1CCTL0 &= ~(OUTMOD0);
+	TA1CCTL0 |= OUTMOD_5;
 }
 
 void moveRightMotorBackward()
 {
-	TA1CCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
-	TA1CCTL1 |= OUTMOD_4;
-	TA1CCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
-	TA1CCTL0 |= OUTMOD_5;
+//	stopRobot();
+//	__delay_cycles(300000);
+
+	TA1CCTL1 &= ~(OUTMOD0);
+	TA1CCTL1 |= OUTMOD_5;
+	TA1CCTL0 &= ~(OUTMOD0);
+	TA1CCTL0 |= OUTMOD_4;
 }
 
 void stopRightMotor()
 {
-	TA1CCTL1 &= ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TA1CCTL1 &= ~(OUTMOD0);
 	TA1CCTL1 |= OUTMOD_5;
-	TA1CCTL0 &=  ~(OUTMOD2|OUTMOD1|OUTMOD0);
+	TA1CCTL0 &=  ~(OUTMOD0);
 	TA1CCTL0 |= OUTMOD_5;
 }
 
@@ -133,4 +145,10 @@ void moveRobotBigRight()
 {
 	stopRightMotor();
 	moveLeftMotorForward();
+}
+
+void stopRobot()
+{
+	stopRightMotor();
+	stopLeftMotor();
 }

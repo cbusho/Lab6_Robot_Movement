@@ -45,4 +45,7 @@ void moveRobotSmallRight();
 
 void moveRobotBigRight();
 
+
+void stopRobot();
+
 #endif /* ROBOT_MOVEMENT_H_ */
