@@ -3,7 +3,7 @@ Library for moving the robot using the MSP430
 Example code is included in example.c
 
 ## General Notes
-Configures the robot to move easily with the functions provided
+Configures the robot using TimerA and PWM to move easily with the functions provided
 
 ## Functions
 
